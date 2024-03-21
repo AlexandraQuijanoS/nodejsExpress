@@ -1,7 +1,7 @@
-const jwt = require('jwt-simple');
-const moment = require('moment');
+import jwt from 'jwt-simple';
+import moment from 'moment'
 
-const checkToken = (req, res, next) => {
+export const checkToken = (req, res, next) => {
     if(!req.headers['user-token']){
         return res.json({error: "Se necesita incluir el user-token en la cabecera"})
     }
@@ -19,8 +19,4 @@ const checkToken = (req, res, next) => {
 
     req.usuarioId = payload.usuarioId;
     next();
-}
-
-module.exports = {
-    checkToken: checkToken
 }

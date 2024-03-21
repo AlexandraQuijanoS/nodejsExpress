@@ -1,18 +1,25 @@
-module.exports = (sequelize, type) => {
-  let Speciality = sequelize.define("speciality", {
+import { sequelize } from '../database/db.js';
+import { DataTypes } from 'sequelize';
+import { User } from './User.js';
+
+export const Speciality = sequelize.define(
+  'specialities',
+  {
     id: {
-      type: type.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: type.STRING,
-  }, {
-    paranoid: true
-  });
-
-  Speciality.associate = () => {
-
+    speciality_name: DataTypes.STRING,
   }
+);
 
-  return Speciality;
-};
+// Speciality.hasMany(User, {
+//   foreignKey: 'speciality_id',
+//   sourceKey: 'id',
+// })
+
+// User.belongsTo(Speciality, {
+//   foreignKey: 'speciality_id',
+//   targetId: 'id',
+// })
